@@ -1,7 +1,8 @@
+
 name: Build Renjana APK
 
 on:
-  workflow_dispatch:   # Allows manual run from phone
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,7 +18,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
